@@ -1,0 +1,32 @@
+version: "3"
+services:
+  node-app:
+    environment:
+      - PORT=8086
+    build: .
+  nginx-lb:
+    image: nginx
+    volumes:
+      - "./nginx/default.conf:/etc/nginx/nginx.conf"
+    ports:
+      - "8080:80"
+  app-1:
+    image: docker-node-nginx-loadbalancer_node-app
+    environment:
+      - PORT=8081
+  app-2:
+    image: docker-node-nginx-loadbalancer_node-app
+    environment:
+      - PORT=8082
+  app-3:
+    image: docker-node-nginx-loadbalancer_node-app
+    environment:
+      - PORT=8083
+  app-4:
+    image: docker-node-nginx-loadbalancer_node-app
+    environment:
+      - PORT=8084
+  app-5:
+    image: docker-node-nginx-loadbalancer_node-app
+    environment:
+      - PORT=8085
